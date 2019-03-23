@@ -4,3 +4,5 @@
 *.xml
 *.gz
 *.bib
+*.bbl
+*.blg

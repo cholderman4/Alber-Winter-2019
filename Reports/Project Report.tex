@@ -10,13 +10,16 @@
 \usepackage{amsthm}
 \usepackage{caption}
 
+
 \usepackage{cool}
 \newcommand{\pde}{\pderiv}
 
-\usepackage[backend=bibtex,style=authoryear, bibstyle=numeric]{biblatex}
+\usepackage[backend=bibtex,style=numeric, bibstyle=numeric]{biblatex}
 
-\newcommand{\shortcite}[1]{\citeauthor{#1}, \citeyear{#1}, \textbf{\citetitle{#1}}}
+%\newcommand{\shortcite}[1]{\citeauthor{#1}, \citeyear{#1}, \textbf{\citetitle{#1}}}
 
+%\setcitestyle{numbers}
+%\usepackage[numbers]{natbib}
 
 \renewcommand{\P}{\mathcal{P}}
 \newcommand{\NN}{\mathbb{N}}
@@ -73,6 +76,9 @@
 \renewcommand{\lim}{\oldlim\limits}
 
 
+\addbibresource{library.bib}
+
+
 \begin{document}
 	
 	\part*{Project 1: Cellular Automata}
@@ -117,7 +123,8 @@
 	
 	
 	
-	\part*{Summary: Continuum Approximation }
+	\part*{Summary Paper}
+	\section*{A continuum approximation to an off-lattice individual-cell based model of cell migration and adhesion \cite{Middleton2014} }
 	
 	
 	
@@ -135,6 +142,7 @@
 	
 	\section*{Conclusion}
 	
+	\printbibliography
 	
 	
 	
