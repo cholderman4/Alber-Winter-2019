@@ -1,19 +1,16 @@
 \documentclass[12pt,letterpaper,cm]{article}
-\usepackage[margin=1in]{geometry}
+                   \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{ulem}
-\usepackage[shortlabels, inline]{enumitem}
+                 \usepackage[shortlabels, inline]{enumitem}
 \usepackage{verbatim}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{caption}
-
-
+                       \usepackage{caption}
 \usepackage{cool}
-\newcommand{\pde}{\pderiv}
-
+                             \newcommand{\pde}{\pderiv}
 \usepackage[backend=bibtex,style=numeric, bibstyle=numeric]{biblatex}
 
 %\newcommand{\shortcite}[1]{\citeauthor{#1}, \citeyear{#1}, \textbf{\citetitle{#1}}}
@@ -26,7 +23,8 @@
 \newcommand{\ZZ}{\mathbb{Z}}
 \newcommand{\CC}{\mathbb{C}}
 \newcommand{\RR}{\mathbb{R}}
-\newcommand{\QQ}{\mathbb{Q}}
+
+ \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\C}{\mathcal{C}}
 \newcommand{\B}{\mathcal{B}}
@@ -86,6 +84,10 @@
 	
 	\section*{Introduction}
 	
+	This is a model of a 1-D cellular automata consisting of two interacting populations with periodic boundary conditions. These periodic boundary conditions mean that the domain on which this simulations is taking place is topologiclly equivalent to the boundary of a circle.  
+	
+	This model consists of two populations, call them 'A' and 'B'. Members of population A are unable to reproduce, but are able to recruit members from population B to become members of population A. If ever there are two members from A on either side of B, then the B switches to A. Population B is able to reproduce at a rate of $\beta$. Specifically if two members of population B are adjacent to one another, there is a probabilty of a child being born, with $P($ new birth $) = \beta$. Both populations die at a constant rate $\mu$.
+	
 	
 	
 	\section*{Model Assumptions}
@@ -108,6 +110,8 @@
 	
 	
 	\section*{Introduction}
+	
+	
 	
 	
 	
