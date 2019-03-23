@@ -128,19 +128,55 @@
 	
 	
 	
-	\section*{Introduction}
+%	\section*{Introduction}
+%	
+%	
+%	
+%	\section*{Summary}
+%	
+%	
+%	
+%	\section*{Results}	
+%	
+%	
+%	
+%	\section*{Conclusion}
+
+
+	\section{Introduction}
+	\indent 
 	
+	Cellular migration is of great interest to modelers due to the large range of situations it is necessary to take into account.  There have been a number of approaches to modeling this behavior, with the beginning models simplifying as much as possible.  Later models increase in sophistication as the previous models are shown to be either insufficient in capturing the behavior desired or are inscrutable from the perspective of using the model to extract connections between the model and the microscopic cell-scale processes.  The continuum approximation model proposed in this paper tries to address these two concerns first by identifying the deficiencies of previous pertinent models and then by extending those preceding models to compensate, resulting in a better continuum model.   
+	\section{Previous Models Discussion}
+	\indent
 	
+	The first model, a Mean Field Approximation, MFA, discussed revolves around a top-down approach, where a continuum-based model is derived from locally averaged properties such as spatial distributions of cell densities.  This approach relies on either well-established physical laws or by intuition to describe the motion of the cells, but assumes that the statistical correlation of cell-cell interactions are negligible.  Obviously this is problematic, as experimental data demonstrates clearly that there are strong interactions between cells and their nearby neighbors.  
 	
-	\section*{Summary}
+	To try and capture this interaction between cells, IBM or "individual cell-based models," were created.  This model treats each cell as a discrete entity, whereas the previous continuum model treated them as an averaged value.  The first model using this discrete approach used a single node to describe the center of mass of each cell.  These nodes are then placed on a lattice grid, and the motion is simulated using transition probabilities.  These transition probabilities are where considerations such as volume exclusion and cell adhesion to either other cells or to the ECM are taken into account.  The probability of vacating a node is lowered if there are neighboring cells (adhesion), but the issue with this approach is that the coarseness of lattice.  The nodes representing the cells can be removed by more than the diameter of a cell, creating a non-lifelike condition that disallows the modelers from capturing correlations between the positions and velocities of the cells to each other.  Attacking this issue of coarseness, the next logical step is to create numerous nodes to describe a single cell.  A good example of this is the Cellular Potts Model.  This approach allows the model to capture the previously unavailable correlation data, but does so at the cost of computational time, as the lattice can be thought of as being refined into a finer mesh.  This computational cost induces investigation into off-lattice models.  These models are comparable to the on-lattice models in the sense that they too can either represent the cells as either centers of mass or a collection of nodes.  The difference is that off-lattice better captures the behaviors of the cells even in the coarsest settings where there are single nodes assigned to each cell, with the positions of these cells or subcellular cell elements being governed by either stochastics or ordinary differential equations.
+	\section{Setup}
 	
+	\indent 
 	
+	The discrete model is the more accurate representation of the behavior of the cells, but comes at high computational cost.  Therefore, being able to connect the continuum models with the discrete model is ideal, as it would allow for the fast evaluation of variations of the parameter space.  A discrete model is introduced using an off-lattice IBM based on Langevin equations to begin this process of connection.  This model captures the adhesion and migration of the cells, and then is used to derive the governing equations for the associated probability distribution functions, which form a hierarchy of N partial integro-differential equations, where N denotes the number of cells in the system.  The discrete model is run multiple times, $10^5$ times to be exact, to create an "ensemble average" distribution, which creates numerical results by averaging the individual values across a large number of runs.  This ensemble average is compared against the results generated from two different continuum approximations, the MFA and the Kirkwood Superposition approximation, KSA.
 	
-	\section*{Results}	
+	The continuum models are introduced as a strategy to try and truncate the hierarchy of integro-differential equations generated in the IBM model to a manageable amount.  This is achieved by comparing the results generated from the IBM against those of the continuum models to see if there is sufficient connection to justify using the continuum models as a tool for rapid investigation of the parameter space.  
 	
+	\section{IBM Construction and Discussion}
 	
+	\indent 
 	
-	\section*{Conclusion}
+	The IBM used to capture cell movement and adhesion follows the model developed by Newman and Grima: 
+	\[\dot{x_i} = \xi_i + \alpha \nabla_i \phi.\]  
+	
+	The $\xi$ term encompasses noise, $\alpha$ represents the chemotactic attitude, with positive indicating aggregation and negative, repulsion. The gradient of $\phi$, the chemical concentration, is evaluated at the cell's current position.  The IBM model assumes that the cells are point masses, and is constructed using Newton's second law, 
+	\[m_i \frac{d^{2}x_{i}}{dt^2}=F^{visc}_i+\sum_{k,k\neq i}F^{int}_{i,k}+\xi_i.\]
+	
+	Here, $m_i$ represents the mass of cell i, $x_i$ the position, $F^{int}_{i,k}$ the force generated by the interactions between cells i and k, $F^{visc}_i$ the viscous force acting on cell i, and $\xi_i$ the stochastic force representing self-propulsion.  The $\xi$ values that are used in this model are sampled from a Gaussian distribution with zero mean and zero auto-correlation as follows:
+	\[
+	<\xi_i(t),\xi_j(t')>=2D\delta_{i,j}\delta(t-t').
+	\] 
+	Note that the D in the Gaussian distribution represents the constant of proportionality, which corresponds to the cell diffusion coefficient.
+
 	
 	\printbibliography
 	
