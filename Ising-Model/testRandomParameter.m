@@ -1,7 +1,7 @@
 clear
 
-randomizeParams = 0;
-randomizeA = 0;
+randomizeParams = 1;
+randomizeA = 1;
 watchSim = 1;
 
 
